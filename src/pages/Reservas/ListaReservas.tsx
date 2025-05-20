@@ -2,7 +2,7 @@ import { DefaultLayout } from "../../styles/DefaultLayout";
 
 
 
-export const Reservas = () => {
+export const ListaReservas = () => {
   return (
     <DefaultLayout>
       <h1>Reservas</h1>
