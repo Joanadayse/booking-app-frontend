@@ -7,4 +7,14 @@ export interface Reserva {
   date: string;
   start_time: string;
   end_time: string;
+  turno: string;
+  createdAt: string;
+  updatedAt: string;
+  Space?: {
+    name: string;
+    location: string;
+  };
+  User?: {
+    name: string;
+  };
 }

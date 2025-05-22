@@ -94,13 +94,18 @@ export const Sidebar = () => {
     <SidebarContainer>
       <div>
         {/* LOCAL */}
-        <SectionTitle>LOCAL</SectionTitle>
-        <NavItem to="#">
-           <FiMapPin style={{ marginRight: "8px" }} />
-          EQTLab</NavItem>
-        <NavItem to="#">
-          <FiMapPin style={{ marginRight: "8px" }} />
-          Caldeira</NavItem>
+<NavItem to="/reservas/local/1"> {/* CALDEIRA */}
+  <FiMapPin style={{ marginRight: "8px" }} />
+  Caldeira
+</NavItem>
+<NavItem to="/reservas/local/2"> {/* EQTLAB */}
+  <FiMapPin style={{ marginRight: "8px" }} />
+  EQTLab
+</NavItem>
+
+
+
+
 
         {/* MENU */}
         <SectionTitle>MENU</SectionTitle>
