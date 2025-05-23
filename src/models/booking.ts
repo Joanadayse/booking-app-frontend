@@ -3,6 +3,7 @@ export interface Space {
   name: string;
   type: string;
   location: string;
+  capacity: number;
 }
 
 export interface User {
