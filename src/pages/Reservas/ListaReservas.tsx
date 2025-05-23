@@ -3,6 +3,7 @@ import { DefaultLayout } from "../../styles/DefaultLayout";
 
 import type { Booking } from "../../models/booking";
 import { getBookings } from "../../services/api";
+import { Link } from "react-router-dom";
 
 
 
@@ -73,6 +74,10 @@ function getTurno(start_time: string, end_time: string): "manhã" | "tarde" | "i
 
 </tbody>
     </table>
+
+          <Link to="/reservas/novo">
+        <button style={{ marginBottom: "1rem" }}>Nova Reserva</button>
+      </Link>
   </div>
 
 
