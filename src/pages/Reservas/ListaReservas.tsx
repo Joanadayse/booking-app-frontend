@@ -4,7 +4,7 @@ import { DefaultLayout } from "../../styles/DefaultLayout";
 import type { Booking } from "../../models/booking";
 import { api, getBookings } from "../../services/api";
 import { Link } from "react-router-dom";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 
 
 
@@ -13,7 +13,8 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 
 export const ListaReservas = () => {
   const [reservas, setBookings] = useState<Booking[]>([]);
-
+ const [reservaSelecionada, setReservaSelecionada] = useState<Booking | null>(null);
+const [modalAberto, setModalAberto] = useState(false);
 
 
 
@@ -51,6 +52,15 @@ const handleDelete = async (id: number) => {
   }
 };
 
+function abrirModal(reserva: Booking) {
+  setReservaSelecionada(reserva);
+  setModalAberto(true);
+}
+
+function fecharModal() {
+  setReservaSelecionada(null);
+  setModalAberto(false);
+}
 
 
   return (
@@ -78,7 +88,7 @@ const handleDelete = async (id: number) => {
       <td>{reserva.date}</td>
       <td>{reserva.title}</td>
       <td>{getTurno(reserva.start_time, reserva.end_time)}</td>
- <td>
+ {/* <td>
         <Link to={`/reservas/editar/${reserva.id}`}>
           <FaEdit style={{ cursor: "pointer", color: "#007bff" }} title="Editar reserva" />
         </Link>
@@ -90,7 +100,30 @@ const handleDelete = async (id: number) => {
   >
     <FaTrash />
   </button>
-      </td>
+
+   <FaEye
+    style={{ cursor: "pointer", color: "#28a745" }}
+    title="Visualizar reserva"
+    onClick={() => abrirModal(reserva)}
+  />
+      </td> */}
+
+      <td style={{ display: "flex", gap: "0.5rem" }}>
+  <FaEye
+    style={{ cursor: "pointer", color: "#28a745" }}
+    title="Visualizar reserva"
+    onClick={() => abrirModal(reserva)}
+  />
+  <Link to={`/reservas/editar/${reserva.id}`}>
+    <FaEdit style={{ cursor: "pointer", color: "#007bff" }} title="Editar reserva" />
+  </Link>
+  <FaTrash
+    style={{ cursor: "pointer", color: "#dc3545" }}
+    title="Excluir reserva"
+    onClick={() => handleDelete(reserva.id)}
+  />
+</td>
+
 
 
 
@@ -108,9 +141,32 @@ const handleDelete = async (id: number) => {
 
 
      
+  {modalAberto && reservaSelecionada && (
+  <div style={{
+    position: "fixed", top: 0, left: 0, width: "100%", height: "100%",
+    backgroundColor: "rgba(0,0,0,0.5)", display: "flex", justifyContent: "center", alignItems: "center"
+  }}>
+    <div style={{
+      backgroundColor: "white", padding: "2rem", borderRadius: "8px", width: "90%", maxWidth: "500px"
+    }}>
+      <h2>Detalhes da Reserva</h2>
+      <p><strong>Sala:</strong> {reservaSelecionada.Space?.name}</p>
+      {/* <p><strong>Responsável:</strong> {reservaSelecionada.responsavel}</p> */}
+      <p><strong>Data:</strong> {reservaSelecionada.date}</p>
+      <p><strong>Turno:</strong> {getTurno(reservaSelecionada.start_time, reservaSelecionada.end_time)}</p>
+      <p><strong>Observações:</strong> {reservaSelecionada.description}</p>
+      <button onClick={fecharModal}>Fechar</button>
+    </div>
+  </div>
+)}
 
     </DefaultLayout>
         
      
   );
+
+
+
 };
+
+
