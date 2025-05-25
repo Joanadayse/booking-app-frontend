@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { DefaultLayout } from "../../styles/DefaultLayout";
 
 import type { Booking } from "../../models/booking";
-import { getBookings } from "../../services/api";
+import { api, getBookings } from "../../services/api";
 import { Link } from "react-router-dom";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 
 
@@ -40,6 +40,16 @@ function getTurno(start_time: string, end_time: string): "manhã" | "tarde" | "i
   return "personalizado";
 }
 
+const handleDelete = async (id: number) => {
+  if (!window.confirm("Tem certeza que deseja deletar esta reserva?")) return;
+
+  try {
+    await api.delete(`/bookings/${id}`);
+    setBookings(reservas.filter(r => r.id !== id));
+  } catch {
+    alert("Erro ao deletar a reserva.");
+  }
+};
 
 
 
@@ -72,7 +82,16 @@ function getTurno(start_time: string, end_time: string): "manhã" | "tarde" | "i
         <Link to={`/reservas/editar/${reserva.id}`}>
           <FaEdit style={{ cursor: "pointer", color: "#007bff" }} title="Editar reserva" />
         </Link>
+         <button
+    onClick={() => handleDelete(reserva.id)}
+    style={{ background: "none", border: "none", cursor: "pointer", color: "red" }}
+    title="Deletar reserva"
+    aria-label="Deletar reserva"
+  >
+    <FaTrash />
+  </button>
       </td>
+
 
 
 
