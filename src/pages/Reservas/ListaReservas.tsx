@@ -4,6 +4,7 @@ import { DefaultLayout } from "../../styles/DefaultLayout";
 import type { Booking } from "../../models/booking";
 import { getBookings } from "../../services/api";
 import { Link } from "react-router-dom";
+import { FaEdit } from "react-icons/fa";
 
 
 
@@ -55,6 +56,7 @@ function getTurno(start_time: string, end_time: string): "manhã" | "tarde" | "i
           <th>Responsável</th>
           <th>Data</th>
           <th>Turno</th>
+           <th>Editar</th>
         </tr>
       </thead>
     
@@ -64,8 +66,13 @@ function getTurno(start_time: string, end_time: string): "manhã" | "tarde" | "i
        <td>{reserva.Space ? reserva.Space.name : "Sala não definida"}</td>
        <td>{reserva.User ? reserva.User.name : "Responsável não definido"}</td>
       <td>{reserva.date}</td>
+      <td>{reserva.title}</td>
       <td>{getTurno(reserva.start_time, reserva.end_time)}</td>
-
+ <td>
+        <Link to={`/reservas/editar/${reserva.id}`}>
+          <FaEdit style={{ cursor: "pointer", color: "#007bff" }} title="Editar reserva" />
+        </Link>
+      </td>
 
 
 

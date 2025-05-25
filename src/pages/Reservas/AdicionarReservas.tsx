@@ -81,7 +81,7 @@ const AdicionarReservas = () => {
         <select name="turno" value={form.turno} onChange={handleChange}>
           <option value="manhã">Manhã</option>
           <option value="tarde">Tarde</option>
-          <option value="noite">Noite</option>
+          <option value="integral">Integral</option>
         </select>
         <select name="space_id" value={form.space_id} onChange={handleChange} required>
           <option value="">Selecione um ambiente</option>
