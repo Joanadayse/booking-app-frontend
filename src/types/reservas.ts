@@ -16,5 +16,6 @@ export interface Reserva {
   };
   User?: {
     name: string;
+    email: string;
   };
 }

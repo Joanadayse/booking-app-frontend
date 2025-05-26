@@ -15,6 +15,9 @@ export const ListaReservas = () => {
   const [reservas, setBookings] = useState<Booking[]>([]);
  const [reservaSelecionada, setReservaSelecionada] = useState<Booking | null>(null);
 const [modalAberto, setModalAberto] = useState(false);
+const [salaFiltro, setSalaFiltro] = useState<string>("");  // Filtro por sala
+const [dataInicio, setDataInicio] = useState<string>("");  // Início do período
+const [dataFim, setDataFim] = useState<string>("");        // Fim do período
 
 
 
@@ -62,10 +65,30 @@ function fecharModal() {
   setModalAberto(false);
 }
 
+const reservasFiltradas = reservas.filter(reserva => {
+  const salaOk = salaFiltro === "" || reserva.Space?.name === salaFiltro;
+  const dataOk =
+    (dataInicio === "" || reserva.date >= dataInicio) &&
+    (dataFim === "" || reserva.date <= dataFim);
+  return salaOk && dataOk;
+});
+
 
   return (
     <DefaultLayout>
       <h1>Reservas</h1>
+
+      <div style={{ display: "flex", gap: "1rem", marginBottom: "1rem" }}>
+  <select value={salaFiltro} onChange={(e) => setSalaFiltro(e.target.value)}>
+    <option value="">Todas as salas</option>
+    {Array.from(new Set(reservas.map(reserva => reserva.Space?.name))).map((sala) => (
+      <option key={sala} value={sala}>{sala}</option>
+    ))}
+  </select>
+
+  <input type="date" value={dataInicio} onChange={(e) => setDataInicio(e.target.value)} />
+  <input type="date" value={dataFim} onChange={(e) => setDataFim(e.target.value)} />
+</div>
   
   {/* Evitar que <tbody> esteja direto dentro de <main> */}
   <div>
@@ -80,57 +103,23 @@ function fecharModal() {
         </tr>
       </thead>
     
-  <tbody>
-  {reservas.map((reserva) => (
+<tbody>
+  {reservasFiltradas.map((reserva) => (
     <tr key={reserva.id}>
-       <td>{reserva.Space ? reserva.Space.name : "Sala não definida"}</td>
-       <td>{reserva.User ? reserva.User.name : "Responsável não definido"}</td>
+      <td>{reserva.Space ? reserva.Space.name : "Sala não definida"}</td>
+      <td>{reserva.User ? reserva.User.name : "Responsável não definido"}</td>
       <td>{reserva.date}</td>
       <td>{reserva.title}</td>
       <td>{getTurno(reserva.start_time, reserva.end_time)}</td>
- {/* <td>
+      <td style={{ display: "flex", gap: "0.5rem" }}>
+        <FaEye style={{ cursor: "pointer", color: "#28a745" }} title="Visualizar reserva" onClick={() => abrirModal(reserva)} />
         <Link to={`/reservas/editar/${reserva.id}`}>
           <FaEdit style={{ cursor: "pointer", color: "#007bff" }} title="Editar reserva" />
         </Link>
-         <button
-    onClick={() => handleDelete(reserva.id)}
-    style={{ background: "none", border: "none", cursor: "pointer", color: "red" }}
-    title="Deletar reserva"
-    aria-label="Deletar reserva"
-  >
-    <FaTrash />
-  </button>
-
-   <FaEye
-    style={{ cursor: "pointer", color: "#28a745" }}
-    title="Visualizar reserva"
-    onClick={() => abrirModal(reserva)}
-  />
-      </td> */}
-
-      <td style={{ display: "flex", gap: "0.5rem" }}>
-  <FaEye
-    style={{ cursor: "pointer", color: "#28a745" }}
-    title="Visualizar reserva"
-    onClick={() => abrirModal(reserva)}
-  />
-  <Link to={`/reservas/editar/${reserva.id}`}>
-    <FaEdit style={{ cursor: "pointer", color: "#007bff" }} title="Editar reserva" />
-  </Link>
-  <FaTrash
-    style={{ cursor: "pointer", color: "#dc3545" }}
-    title="Excluir reserva"
-    onClick={() => handleDelete(reserva.id)}
-  />
-</td>
-
-
-
-
-
+        <FaTrash style={{ cursor: "pointer", color: "#dc3545" }} title="Excluir reserva" onClick={() => handleDelete(reserva.id)} />
+      </td>
     </tr>
   ))}
-
 </tbody>
     </table>
 
@@ -168,5 +157,4 @@ function fecharModal() {
 
 
 };
-
 

@@ -96,11 +96,11 @@ export const Sidebar = () => {
         {/* LOCAL */}
 <NavItem to="/reservas/local/1" active={location.pathname === "/reservas/local/1"}> 
   <FiMapPin style={{ marginRight: "8px" }} />
-  EQTLab
+  Caldeira
 </NavItem>
 <NavItem to="/reservas/local/2" active={location.pathname === "/reservas/local/2"}> 
   <FiMapPin style={{ marginRight: "8px" }} />
-  Caldeira
+  EQTLab
 </NavItem>
 
 

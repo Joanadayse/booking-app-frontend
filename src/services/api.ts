@@ -1,6 +1,7 @@
 import axios from "axios";
 import type { LoginData, User } from "../models/auth";
-import type { Booking, Space } from "../models/booking";
+import type {  Booking, Space } from "../models/booking";
+
 
 
 export const api = axios.create({
