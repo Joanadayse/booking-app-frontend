@@ -19,3 +19,11 @@ export interface Reserva {
     email: string;
   };
 }
+
+
+export interface Stats {
+  totalReservasPorSala: { space_id: number; total: number; Space: { name: string } }[];
+  totalReservasPorTurno: { turno: string; total: number }[];
+  totalReservasPorMes: { mes: string; total: number }[];
+}
+
