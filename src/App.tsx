@@ -9,6 +9,7 @@ import EditarReserva from "./pages/Reservas/EditarReserva";
 import AdicionarAmbiente from "./pages/Ambientes/AdicionarAmbiente";
 import { ListaReservas } from "./pages/Reservas/ListaReservas";
 import { ReservasPorLocal } from "./pages/Reservas/ReservasPorLocal ";
+import { RelatorioReservas } from "./pages/Reservas/RelatorioReservas";
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
         <Route  path="/reservas/novo" element={<AdicionarReservas/>}  />
         <Route  path="/reservas/editar/:id" element={<EditarReserva/>} />
         <Route path="/reservas/local/:locationId" element={<ReservasPorLocal />} />
+        <Route path="/reservas/relatorio" element={<RelatorioReservas />} />
 
 
         

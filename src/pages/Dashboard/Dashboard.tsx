@@ -3,6 +3,7 @@ import { DefaultLayout } from "../../styles/DefaultLayout";
 import { api } from "../../services/api";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import type { Stats } from "../../types/reservas";
+
 import {
   Chart as ChartJS,
   PointElement,
@@ -15,6 +16,7 @@ import {
   BarElement,
   ArcElement
 } from "chart.js";
+
 
 ChartJS.register(
   PointElement,
@@ -29,19 +31,12 @@ ChartJS.register(
 );
 
 
-// import type { Stats } from "../../models/stats";
-
-
-// export type Stats = {
-//   totalReservasPorSala: { Space: { name: string }; total: number }[];
-//   totalReservasPorTurno: { turno: string; total: number }[];
-//   totalReservasPorMes: { mes: string; total: number }[];
-// };
 
 
 export const Dashboard = () => {
   const [location, setLocation] = useState("Caldeira");
   const [stats, setStats] = useState<Stats | null>(null);
+
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
   setLocation(event.target.value);
@@ -85,6 +80,9 @@ const lineData = stats ? {
 
 
 
+
+
+
   return (
  <DefaultLayout>
   <div>
@@ -99,10 +97,6 @@ const lineData = stats ? {
 
   <h2>Reservas por Sala ({location})</h2>
 
-  {/* ✅ As props key abaixo garantem a recriação do gráfico ao trocar de local */}
-  {/* <Bar key={`bar-${location}`} data={barData} />
-  <Pie key={`pie-${location}`} data={pieData} />
-  <Line key={`line-${location}`} data={lineData} /> */}
 
   <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "300px" }}>
   <Bar key={`bar-${location}`} data={barData}  />
