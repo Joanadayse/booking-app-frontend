@@ -25,17 +25,42 @@ useEffect(() => {
 
 
   return (
-   <DefaultLayout>
-  <h1>PÁGINA DE AMBIENTES</h1>
-  {error && <p>{error}</p>}
-  {spaces?.map(space => (
-    <div key={space.id}>
-      <h2>{space.name}</h2>
-      <p>Local: {space.location}</p>
-      <p>Capacidade: {space.capacity}</p>
-    </div>
-  ))}
-</DefaultLayout>
+<DefaultLayout>
+      <div style={{ padding: "2rem" }}>
+        <h1 style={{ fontSize: "2rem", marginBottom: "1.5rem", textAlign: "center" }}>
+          Página de Ambientes
+        </h1>
+
+        {error && (
+          <p style={{ color: "red", textAlign: "center" }}>{error}</p>
+        )}
+
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+          gap: "1.5rem"
+        }}>
+          {spaces?.map((space) => (
+            <div
+              key={space.id}
+              style={{
+                backgroundColor: "#fff",
+                padding: "1rem",
+                borderRadius: "8px",
+                boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+                border: "1px solid #eee"
+              }}
+            >
+              <h2 style={{ fontSize: "1.2rem", marginBottom: "0.5rem" }}>
+                {space.name}
+              </h2>
+              <p><strong>Local:</strong> {space.location}</p>
+              <p><strong>Capacidade:</strong> {space.capacity}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </DefaultLayout>
 
   );
 };
