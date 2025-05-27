@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { LoginData, User } from "../models/auth";
-import type {  Booking, Space } from "../models/booking";
+import type {  Booking, CreateSpaceData, Space } from "../models/booking";
 
 
 
@@ -25,5 +25,10 @@ export const getBookings = async (): Promise<Booking[]> => {
 
 export const getSpaces = async (): Promise<Space[]> => {
   const response = await api.get<Space[]>("/spaces");
+  return response.data;
+};
+
+export const createSpace = async (space: CreateSpaceData): Promise<Space> => {
+  const response = await api.post<Space>("/spaces", space);
   return response.data;
 };

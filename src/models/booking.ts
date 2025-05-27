@@ -28,3 +28,9 @@ export interface Booking {
   User?: { name: string; email: string; };
 }
 
+export interface CreateSpaceData {
+  name: string;
+  location: string;
+  capacity: number;
+}
+

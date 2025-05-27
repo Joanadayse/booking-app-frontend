@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { DefaultLayout } from "../../styles/DefaultLayout";
 import type { Space } from "../../models/booking";
 import { getSpaces } from "../../services/api";
+import { Link } from "react-router-dom";
 
 const Ambientes = () => {
    const [spaces, setSpaces] = useState<Space[] | null>(null);
@@ -30,6 +31,9 @@ useEffect(() => {
         <h1 style={{ fontSize: "2rem", marginBottom: "1.5rem", textAlign: "center" }}>
           Página de Ambientes
         </h1>
+            <Link to="/ambientes/novo">
+        <button style={{ marginBottom: "20px" }}>Adicionar Novo Ambiente</button>
+      </Link>
 
         {error && (
           <p style={{ color: "red", textAlign: "center" }}>{error}</p>

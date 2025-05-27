@@ -3,3 +3,5 @@ export type Stats = {
   totalReservasPorTurno: { turno: string; total: number }[];
   totalReservasPorMes: { mes: string; total: number }[];
 };
+
+
