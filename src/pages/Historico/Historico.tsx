@@ -28,9 +28,9 @@ const [location, setLocation] = useState("Caldeira");
 
   return (
       <DefaultLayout>
-        <h2 style={{ borderBottom: "2px solid #007bff", paddingBottom: "5px", marginBottom: "20px" }}>
-  Reservas por Sala
-</h2>
+        <h1 style={{ borderBottom: "2px solid #007bff", paddingBottom: "5px", marginBottom: "20px" }}>
+ Histórico
+</h1>
 
  <div>
     <label>Filtrar por Local:</label>

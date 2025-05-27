@@ -92,35 +92,7 @@ export const ReservasPorLocal = () => {
           </div>
         )}
       </div>
-    {/* <div style={{ padding: "2rem" }}>
-      <h2>Reservas do Local ID {locationId}</h2>
-      {loading ? (
-        <p>Carregando reservas...</p>
-      ) : (
-        <>
-          {reservas.length === 0 ? (
-            <p>Nenhuma reserva encontrada para este local.</p>
-          ) : (
-            <ul>
-             {reservas.map(reserva => (
-  <div key={reserva.id}>
-    <h3>{reserva.title}</h3>
-    <p>{reserva.id}</p>
-    <p>Espaço: {reserva.Space?.name}</p>
-    <p>Usuário: {reserva.User?.name}</p>
-    <p>Data: {reserva.date}</p>
-      
-      <button onClick={() => handleDelete(reserva.id)} style={{ color: "red",  padding: "0.5rem", border: "none", cursor: "pointer" }}>
-         <FaTrash />
-        </button> 
-  </div>
-))}
 
-            </ul>
-          )}
-        </>
-      )}
-    </div> */}
     </DefaultLayout>
   );
 };
