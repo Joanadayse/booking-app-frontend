@@ -45,7 +45,54 @@ export const ReservasPorLocal = () => {
 
   return (
     <DefaultLayout>
-    <div style={{ padding: "2rem" }}>
+      <div style={{ padding: "2rem" }}>
+        <h2 style={{ marginBottom: "1.5rem" }}>Reservas do Local ID {locationId}</h2>
+
+        {loading ? (
+          <p>Carregando reservas...</p>
+        ) : reservas.length === 0 ? (
+          <p>Nenhuma reserva encontrada para este local.</p>
+        ) : (
+          <div style={{ display: "grid", gap: "1rem" }}>
+            {reservas.map(reserva => (
+              <div
+                key={reserva.id}
+                style={{
+                  backgroundColor: "#f9f9f9",
+                  padding: "1rem",
+                  borderRadius: "8px",
+                  boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+                  position: "relative"
+                }}
+              >
+                <h3 style={{ marginBottom: "0.5rem" }}>{reserva.title}</h3>
+                <p><strong>ID:</strong> {reserva.id}</p>
+                <p><strong>Espaço:</strong> {reserva.Space?.name}</p>
+                <p><strong>Usuário:</strong> {reserva.User?.name}</p>
+                <p><strong>Data:</strong> {reserva.date}</p>
+
+                <button
+                  onClick={() => handleDelete(reserva.id)}
+                  title="Excluir reserva"
+                  style={{
+                    position: "absolute",
+                    top: "1rem",
+                    right: "1rem",
+                    background: "none",
+                    border: "none",
+                    color: "#d9534f",
+                    cursor: "pointer",
+                    fontSize: "1.2rem"
+                  }}
+                >
+                  <FaTrash />
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    {/* <div style={{ padding: "2rem" }}>
       <h2>Reservas do Local ID {locationId}</h2>
       {loading ? (
         <p>Carregando reservas...</p>
@@ -62,25 +109,7 @@ export const ReservasPorLocal = () => {
     <p>Espaço: {reserva.Space?.name}</p>
     <p>Usuário: {reserva.User?.name}</p>
     <p>Data: {reserva.date}</p>
-      {/* <button
-                onClick={() => handleDelete(reserva.id)}
-                style={{
-                  position: "absolute",
-                  top: "1rem",
-                  right: "1rem",
-                  backgroundColor: "#e74c3c",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "4px",
-                  padding: "0.5rem",
-                  cursor: "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.3rem",
-                }}
-              >
-                <FaTrash /> Excluir
-              </button> */}
+      
       <button onClick={() => handleDelete(reserva.id)} style={{ color: "red",  padding: "0.5rem", border: "none", cursor: "pointer" }}>
          <FaTrash />
         </button> 
@@ -91,7 +120,7 @@ export const ReservasPorLocal = () => {
           )}
         </>
       )}
-    </div>
+    </div> */}
     </DefaultLayout>
   );
 };
