@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { api, getSpaces } from "../../services/api";
 import { DefaultLayout } from "../../styles/DefaultLayout";
-import type { Space, Booking } from "../../models/booking"; // importe suas interfaces
+import type {  Booking } from "../../models/booking"; // importe suas interfaces
+import type { Space } from "../../models/space";
 
 
 

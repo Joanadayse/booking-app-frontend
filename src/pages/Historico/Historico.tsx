@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { DefaultLayout } from "../../styles/DefaultLayout";
-import type { Stats } from "../../types/reservas";
 import { api } from "../../services/api";
+import type { Stats } from "../../models/stats";
 
 
 

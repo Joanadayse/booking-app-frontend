@@ -1,17 +1,3 @@
-export interface Space {
-  id: number;
-  name: string;
-  type: string;
-  location: string;
-  capacity: number;
-}
-
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-}
-
 export interface Booking {
   id: number;
   title: string;
@@ -28,9 +14,5 @@ export interface Booking {
   User?: { name: string; email: string; };
 }
 
-export interface CreateSpaceData {
-  name: string;
-  location: string;
-  capacity: number;
-}
+
 

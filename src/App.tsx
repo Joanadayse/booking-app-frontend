@@ -10,6 +10,7 @@ import AdicionarAmbiente from "./pages/Ambientes/AdicionarAmbiente";
 import { ListaReservas } from "./pages/Reservas/ListaReservas";
 import { ReservasPorLocal } from "./pages/Reservas/ReservasPorLocal ";
 import { RelatorioReservas } from "./pages/Reservas/RelatorioReservas";
+import { AmbientesDisponiveis } from "./pages/Ambientes/AmbientesDisponiveis";
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
         
         <Route path="/ambientes" element={<Ambientes />} />
         <Route  path="/ambientes/novo" element={<AdicionarAmbiente/>}  />
+         <Route path="/disponibilidade" element={<AmbientesDisponiveis />} />
 
         <Route path="/historico" element={<Historico />} />
         <Route path="/dashboard" element={<Dashboard />} />

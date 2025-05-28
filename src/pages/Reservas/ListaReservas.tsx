@@ -83,11 +83,11 @@ export const ListaReservas = () => {
           <thead>
             <tr>
               <th>Sala</th>
-              <th>Respons\u00e1vel</th>
+              <th>Responsável</th>
               <th>Data</th>
               <th>Titulo</th>
               <th>Turno</th>
-              <th>A\u00e7\u00f5es</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -113,7 +113,7 @@ export const ListaReservas = () => {
           <button style={{ marginBottom: "1rem" }}>Nova Reserva</button>
         </Link>
         <Link to="/reservas/relatorio">
-          <button style={{ marginBottom: "1rem", marginLeft: "1rem" }}>Relat\u00f3rio</button>
+          <button style={{ marginBottom: "1rem", marginLeft: "1rem" }}>Relatorio</button>
         </Link>
       </div>
 
@@ -129,7 +129,7 @@ export const ListaReservas = () => {
             <p><strong>Sala:</strong> {reservaSelecionada.Space?.name}</p>
             <p><strong>Data:</strong> {reservaSelecionada.date}</p>
             <p><strong>Turno:</strong> {getTurno(reservaSelecionada.start_time, reservaSelecionada.end_time)}</p>
-            <p><strong>Observa\u00e7\u00f5es:</strong> {reservaSelecionada.description}</p>
+            <p><strong>Descrição</strong> {reservaSelecionada.description}</p>
             <button onClick={fecharModal}>Fechar</button>
           </div>
         </div>

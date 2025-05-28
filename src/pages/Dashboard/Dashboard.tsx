@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { DefaultLayout } from "../../styles/DefaultLayout";
 import { api } from "../../services/api";
 import { Bar, Line, Pie } from "react-chartjs-2";
-import type { Stats } from "../../types/reservas";
+
 
 import {
   Chart as ChartJS,
@@ -16,6 +16,7 @@ import {
   BarElement,
   ArcElement
 } from "chart.js";
+import type { Stats } from "../../models/stats";
 
 
 ChartJS.register(

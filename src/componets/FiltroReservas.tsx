@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import type { Reserva } from "../types/reservas";
+import type { Booking } from "../models/booking";
+
 
 interface FiltroParams {
   startDate?: string;
@@ -11,7 +12,7 @@ interface FiltroParams {
 
 interface FiltroReservasProps {
   onFiltrar: (params: FiltroParams) => void;
-reservas: Reserva[];
+reservas: Booking[];
 }
 
 interface Espaco {

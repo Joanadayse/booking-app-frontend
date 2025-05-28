@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-
 import { DefaultLayout } from "../../styles/DefaultLayout";
-import type { Space } from "../../models/booking";
 import { getSpaces } from "../../services/api";
 import { Link } from "react-router-dom";
+import type { Space } from "../../models/space";
 
 const Ambientes = () => {
    const [spaces, setSpaces] = useState<Space[] | null>(null);

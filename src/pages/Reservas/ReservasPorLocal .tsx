@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import type { Reserva } from "../../types/reservas";
+
 import { DefaultLayout } from "../../styles/DefaultLayout";
 import { FaTrash } from "react-icons/fa";
+import { api } from "../../services/api";
+import type { Booking } from "../../models/booking";
 
 export const ReservasPorLocal = () => {
   const { locationId } = useParams<{ locationId: string }>();
-  const [reservas, setReservas] = useState<Reserva[]>([]);
+  const [reservas, setReservas] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   
 
 
+  
   useEffect(() => {
     const fetchReservas = async () => {
       try {
-         console.log("Buscando reservas para:", locationId);
-       const response = await axios.get(`http://localhost:5000/api/bookings/location/${locationId}`);
+        console.log("Buscando reservas para:", locationId);
+        const response = await api.get(`/bookings/location/${locationId}`);
         console.log("Dados recebidos:", response.data);
         setReservas(response.data);
       } catch (error) {
@@ -34,8 +36,7 @@ export const ReservasPorLocal = () => {
     if (!confirm) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/bookings/${id}`);
-      // Atualiza a lista após deletar
+      await api.delete(`/bookings/${id}`);
       setReservas(prev => prev.filter(reserva => reserva.id !== id));
     } catch (error) {
       console.error("Erro ao excluir reserva:", error);

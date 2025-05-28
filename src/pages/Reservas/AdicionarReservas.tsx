@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import type { Booking, Space } from "../../models/booking";
+import type { Booking} from "../../models/booking";
 import { DefaultLayout } from "../../styles/DefaultLayout";
 import { api, getSpaces } from "../../services/api";
+import type { Space } from "../../models/space";
 
 const AdicionarReservas = () => {
  const [spaces, setSpaces] = useState<Space[]>([]);
@@ -27,27 +28,49 @@ const AdicionarReservas = () => {
     fetchSpaces();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const { name, value } = e.target;
+  setForm(prev => ({
+    ...prev,
+    [name]: (name === "space_id" || name === "user_id") ? Number(value) : value
+  }));
+};
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      await api.post<Booking>("/bookings", form);
-      setMensagem("Reserva criada com sucesso!");
-      setForm({
-        title: "",
-        description: "",
-        date: "",
-        turno: "manhã",
-        user_id: 1,
-        space_id: 0
-      });
-    } catch (error) {
-      setMensagem("Erro ao criar a reserva.");
+  e.preventDefault();
+
+  try {
+    // Verifica se já existe reserva para o mesmo espaço, data e turno
+    const response = await api.get<Booking[]>("/bookings", {
+      params: {
+        date: form.date,
+        space_id: form.space_id,
+        turno: form.turno
+      }
+    });
+
+    if (response.data.length > 0) {
+      setMensagem("Já existe uma reserva para esse espaço, data e turno.");
+      return;
     }
-  };
+
+    await api.post<Booking>("/bookings", form);
+    setMensagem("Reserva criada com sucesso!");
+    setForm({
+      title: "",
+      description: "",
+      date: "",
+      turno: "manhã",
+      user_id: 1,
+      space_id: 0
+    });
+  } catch (error) {
+    setMensagem("Erro ao criar a reserva.");
+  }
+};
+
 
   return (
     <DefaultLayout>

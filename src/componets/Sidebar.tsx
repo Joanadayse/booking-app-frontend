@@ -94,14 +94,15 @@ export const Sidebar = () => {
     <SidebarContainer>
       <div>
         {/* LOCAL */}
-<NavItem to="/reservas/local/1" active={location.pathname === "/reservas/local/1"}> 
+<NavItem to="/reservas/local/1" active={location.pathname === "/reservas/local/1"}>
   <FiMapPin style={{ marginRight: "8px" }} />
   Caldeira
 </NavItem>
-<NavItem to="/reservas/local/2" active={location.pathname === "/reservas/local/2"}> 
+<NavItem to="/reservas/local/2" active={location.pathname === "/reservas/local/2"}>
   <FiMapPin style={{ marginRight: "8px" }} />
   EQTLab
 </NavItem>
+
 
 
 
