@@ -94,15 +94,21 @@ const Login: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      await login(formData);
-      navigate("/reservas"); // redireciona para reservas
-    } catch (err) {
-      setError("Erro ao fazer login. Verifique seus dados.");
-    }
-  };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  try {
+    const user = await login(formData);
+
+    // Salva o token na sessionStorage
+    sessionStorage.setItem("token", user.token);
+
+    navigate("/reservas");
+  } catch (err) {
+    setError("Erro ao fazer login. Verifique seus dados.");
+  }
+};
+
+
 
   return (
     <Container>

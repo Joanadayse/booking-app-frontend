@@ -3,10 +3,11 @@ import { DefaultLayout } from "../../styles/DefaultLayout";
 
 import type { Booking } from "../../models/booking";
 import { api, getBookings } from "../../services/api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 
 export const ListaReservas = () => {
+    const navigate = useNavigate();
   const [reservas, setBookings] = useState<Booking[]>([]);
   const [reservaSelecionada, setReservaSelecionada] = useState<Booking | null>(null);
   const [modalAberto, setModalAberto] = useState(false);
@@ -110,11 +111,14 @@ export const ListaReservas = () => {
           </tbody>
         </table>
         <Link to="/reservas/novo">
-          <button style={{ marginBottom: "1rem" }}>Nova Reserva</button>
+          <button style={{ marginBottom: "1rem" , marginLeft: "1rem" }}>Nova Reserva</button>
         </Link>
         <Link to="/reservas/relatorio">
           <button style={{ marginBottom: "1rem", marginLeft: "1rem" }}>Relatorio</button>
         </Link>
+         <button style={{ marginBottom: "1rem", marginLeft: "1rem" }} onClick={() => navigate("/disponibilidade")}>
+        Ver Ambientes Disponíveis
+      </button>
       </div>
 
       {modalAberto && reservaSelecionada && (

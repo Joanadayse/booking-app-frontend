@@ -1,7 +1,8 @@
 import { FiArchive, FiBarChart2, FiBriefcase, FiClock, FiLogOut, FiMapPin } from "react-icons/fi";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { getInitials } from "../utils/getInitials";
+import { useEffect, useState } from "react";
 
 
 
@@ -89,62 +90,111 @@ const Divider = styled.hr`
 
 export const Sidebar = () => {
   const location = useLocation();
+    const navigate = useNavigate();
+
+ const [userData, setUserData] = useState<{ name: string; email: string } | null>(null);
+
+useEffect(() => {
+  const fetchUser = async () => {
+    try {
+      const token = sessionStorage.getItem("token");
+      if (!token) return;
+
+const response = await fetch("http://localhost:3001/api/auth/user", {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("User data recebido:", data);
+
+        // ✅ Corrigido aqui: acessa data.user
+       if (data && data.name && data.email) {
+  setUserData({
+    name: data.name,
+    email: data.email,
+  });
+} else {
+  console.warn("Usuário não encontrado na resposta");
+  setUserData(null);
+}
+
+      } else {
+        console.error("Não autorizado");
+        setUserData(null);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar usuário:", error);
+      setUserData(null);
+    }
+  };
+
+  fetchUser();
+}, []);
+
+
+
+
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  navigate("/");
+};
+
+
 
   return (
     <SidebarContainer>
       <div>
         {/* LOCAL */}
-<NavItem to="/reservas/local/1" active={location.pathname === "/reservas/local/1"}>
-  <FiMapPin style={{ marginRight: "8px" }} />
-  Caldeira
-</NavItem>
-<NavItem to="/reservas/local/2" active={location.pathname === "/reservas/local/2"}>
-  <FiMapPin style={{ marginRight: "8px" }} />
-  EQTLab
-</NavItem>
-
-
-
-
-
+        <NavItem to="/reservas/local/1" active={location.pathname === "/reservas/local/1"}>
+          <FiMapPin style={{ marginRight: "8px" }} />
+          Caldeira
+        </NavItem>
+        <NavItem to="/reservas/local/2" active={location.pathname === "/reservas/local/2"}>
+          <FiMapPin style={{ marginRight: "8px" }} />
+          EQTLab
+        </NavItem>
 
         {/* MENU */}
         <SectionTitle>MENU</SectionTitle>
         <NavItem to="/reservas" active={location.pathname === "/reservas"}>
-           <FiClock style={{ marginRight: "8px" }} />
+          <FiClock style={{ marginRight: "8px" }} />
           Reservas
         </NavItem>
         <NavItem to="/ambientes" active={location.pathname === "/ambientes"}>
-        <FiBriefcase style={{ marginRight: "8px" }} />
+          <FiBriefcase style={{ marginRight: "8px" }} />
           Ambientes
         </NavItem>
         <NavItem to="/historico" active={location.pathname === "/historico"}>
-         <FiArchive style={{ marginRight: "8px" }} />
+          <FiArchive style={{ marginRight: "8px" }} />
           Histórico
         </NavItem>
         <NavItem to="/dashboard" active={location.pathname === "/dashboard"}>
-        <FiBarChart2 style={{ marginRight: "8px" }} />
+          <FiBarChart2 style={{ marginRight: "8px" }} />
           Dashboard
         </NavItem>
 
         <Divider />
 
         {/* USUÁRIO LOGADO */}
-        <UserContainer>
-  <Avatar>{getInitials("Joana Dayse")}</Avatar>
-  <UserInfo>
-    <span>Joana Dayse</span>
-    <small>joana@email.com</small>
-  </UserInfo>
+        {userData && (
+          <UserContainer>
+            <Avatar>{getInitials(userData.name)}</Avatar>
+            <UserInfo>
+              <span>{userData.name}</span>
+              <small>{userData.email}</small>
+            </UserInfo>
+          </UserContainer>
+        )}
 
- 
-</UserContainer>
- <NavItem to="/">
-             <FiLogOut style={{ marginRight: "8px" }} />
-            Sair</NavItem>
-
+        <NavItem to="/">
+          <FiLogOut style={{ marginRight: "8px" }} />
+          Sair
+        </NavItem>
       </div>
-      
     </SidebarContainer>
   );
 };

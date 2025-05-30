@@ -12,6 +12,28 @@ export const api = axios.create({
   },
 });
 
+// Adiciona o token em todas as requisições se estiver presente
+api.interceptors.request.use((config) => {
+  const token = sessionStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Redirecionar para login ou exibir alerta
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  }
+);
+
+
 
 export const login = async (data: LoginData): Promise<User> => {
   const response = await api.post<User>("/auth/login", data);
