@@ -82,16 +82,18 @@ const pieData = turnosAgrupados && Object.keys(turnosAgrupados).length ? {
 } : { labels: ["Nenhum dado"], datasets: [{ label: "Sem dados", data: [1],  backgroundColor: ["#CCCCCC"] }] };
 
   // 🔹 Configuração do gráfico de Linhas (Reservas por Mês)
-const lineData = stats?.totalReservasPorMes?.length ? {
+const lineData = stats?.totalReservasPorMes && stats.totalReservasPorMes.length > 0 ? {
   labels: stats.totalReservasPorMes.map(m => 
     new Date(m.mes).toLocaleDateString("pt-BR", { year: "numeric", month: "long" })
   ),
   datasets: [{
     label: "Reservas por Mês",
-    data: stats.totalReservasPorMes.map(m => Number(m.total)), // 🔹 Convertendo corretamente para número
+    data: stats.totalReservasPorMes.map(m => Number(m.total)), // 🔹 Garantindo que os valores sejam números
     borderColor: "#007bff",
-    backgroundColor: "rgba(0, 123, 255, 0.2)", // 🔹 Garantindo que o gráfico tenha visibilidade
-    fill: true
+    backgroundColor: "rgba(0, 123, 255, 0.2)", 
+    fill: true,
+    tension: 0.4, // 🔹 Adicionando suavização para melhor exibição
+    pointRadius: stats.totalReservasPorMes.length === 1 ? 5 : 3 // 🔹 Garante que um único ponto fique visível
   }]
 } : { labels: ["Nenhum dado"], datasets: [{ label: "Sem dados", data: [0], borderColor: "#CCCCCC", fill: false }] };
 
