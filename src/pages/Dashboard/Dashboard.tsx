@@ -58,25 +58,43 @@ useEffect(() => {
   fetchStats();
 }, [location]);
 
-const barData = stats ? {
-  labels: stats.totalReservasPorSala.map(s => s.Space.name),
-  datasets: [{ label: "Reservas por Sala", data: stats.totalReservasPorSala.map(s => s.total), backgroundColor: "rgba(75, 192, 192, 0.6)" }]
-} : { labels: [], datasets: [] };
+const barData = stats?.totalReservasPorSala?.length > 0 ? {
+  labels: stats.totalReservasPorSala.map(s => s.Space?.name || "Sem Nome"), // 🔹 Garantindo que Space existe
+  datasets: [{
+    label: "Reservas por Sala",
+    data: stats.totalReservasPorSala.map(s => Number(s.total)), 
+    backgroundColor: "rgba(75, 192, 192, 0.6)"
+  }]
+} : { labels: ["Nenhum dado"], datasets: [{ label: "Sem dados", data: [1], backgroundColor: ["#CCCCCC"] }] };
 
-const pieData = stats ? {
-  labels: stats.totalReservasPorTurno.map(t => t.turno),
-  datasets: [{ label: "Reservas por Turno", data: stats.totalReservasPorTurno.map(t => t.total), backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"] }]
-} : { labels: [], datasets: [] };
+const normalizeTurno = (turno) => turno.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-const lineData = stats ? {
-  labels: stats.totalReservasPorMes.map(m => m.mes.slice(0, 10)),
+const turnosAgrupados = stats?.totalReservasPorTurno?.reduce((acc, t) => {
+  const turnoNormalizado = normalizeTurno(t.turno);
+  acc[turnoNormalizado] = (acc[turnoNormalizado] || 0) + Number(t.total);
+  return acc;
+}, {});
+
+const pieData = turnosAgrupados && Object.keys(turnosAgrupados).length > 0 ? {
+  labels: Object.keys(turnosAgrupados),
+  datasets: [{
+    label: "Reservas por Turno",
+    data: Object.values(turnosAgrupados),
+    backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
+  }]
+} : { labels: ["Nenhum dado"], datasets: [{ label: "Sem dados", data: [1], backgroundColor: ["#CCCCCC"] }] };
+
+const lineData = stats?.totalReservasPorMes?.length > 0 ? {
+  labels: stats.totalReservasPorMes.map(m => 
+    new Date(m.mes).toLocaleDateString("pt-BR", { year: "numeric", month: "long" })
+  ),
   datasets: [{
     label: "Reservas por Mês",
-    data: stats.totalReservasPorMes.map(m => Number(m.total)), // 🔹 Convertendo para número
+    data: stats.totalReservasPorMes.map(m => Number(m.total)), 
     borderColor: "#007bff",
     fill: false
   }]
-} : { labels: [], datasets: [] };
+} : { labels: ["Nenhum dado"], datasets: [{ label: "Sem dados", data: [1], borderColor: "#CCCCCC" }] };
 
 
 
