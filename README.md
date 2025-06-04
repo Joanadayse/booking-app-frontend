@@ -7,12 +7,11 @@ Interface web para o sistema de reservas, permitindo a gestão de espaços e vis
 
 ## 🧩 Funcionalidades
 
-- 🔐 Autenticação de usuários
-- 📆 Reserva de espaços por data e turno
-- 📊 Visualização de gráficos com estatísticas de uso por local, turno e sala
-- 🕹️ Filtro de local (Caldeira ou EQTLAB)
-- 🗂️ Histórico de reservas realizadas
-- 🖼️ UI intuitiva e responsiva
+ **Autenticação de usuários** via email com JWT  
+ **Gerenciamento de reservas** – Criar, excluir e visualizar reservas  
+ **Dashboard interativo** com gráficos de reservas por turno, mês e espaço  
+ **Filtragem avançada** por localização e período  
+ **Integração com API REST** estruturada no backend 
 
 ---
 
