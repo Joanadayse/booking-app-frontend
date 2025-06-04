@@ -94,46 +94,50 @@ export const Sidebar = () => {
 
  const [userData, setUserData] = useState<{ name: string; email: string } | null>(null);
 
-useEffect(() => {
-  const fetchUser = async () => {
-    try {
-      const token = sessionStorage.getItem("token");
-      if (!token) return;
+ useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = sessionStorage.getItem("token");
 
-const response = await fetch("http://localhost:3001/api/auth/user", {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-});
+        if (!token) {
+          console.error("❌ Token não encontrado! Usuário não autenticado.");
+          setUserData(null);
+          return;
+        }
 
+        console.log("🔹 Token recuperado do sessionStorage:", token);
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log("User data recebido:", data);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/user`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
 
-        // ✅ Corrigido aqui: acessa data.user
-       if (data && data.name && data.email) {
-  setUserData({
-    name: data.name,
-    email: data.email,
-  });
-} else {
-  console.warn("Usuário não encontrado na resposta");
-  setUserData(null);
-}
+        if (response.ok) {
+          const data = await response.json();
+          console.log("👤 User data recebido:", data);
 
-      } else {
-        console.error("Não autorizado");
+          if (data?.name && data?.email) {
+            setUserData({
+              name: data.name,
+              email: data.email
+            });
+          } else {
+            console.warn("⚠️ Usuário não encontrado na resposta.");
+            setUserData(null);
+          }
+        } else {
+          console.error("🚫 Não autorizado ao buscar usuário.");
+          setUserData(null);
+        }
+      } catch (error) {
+        console.error("❌ Erro ao buscar usuário:", error);
         setUserData(null);
       }
-    } catch (error) {
-      console.error("Erro ao buscar usuário:", error);
-      setUserData(null);
-    }
-  };
+    };
 
-  fetchUser();
-}, []);
+    fetchUser();
+  }, []);
 
 
 
@@ -172,15 +176,17 @@ const response = await fetch("http://localhost:3001/api/auth/user", {
         <Divider />
 
         {/* USUÁRIO LOGADO */}
-        {userData && (
-          <UserContainer>
-            <Avatar>{getInitials(userData.name)}</Avatar>
-            <UserInfo>
-              <span>{userData.name}</span>
-              <small>{userData.email}</small>
-            </UserInfo>
-          </UserContainer>
-        )}
+        {userData ? (
+  <UserContainer>
+    <Avatar>{getInitials(userData.name)}</Avatar>
+    <UserInfo>
+      <span>{userData.name}</span>
+      <small>{userData.email}</small>
+    </UserInfo>
+  </UserContainer>
+) : (
+  <p>🔹 Usuário não autenticado</p>
+)}
 
         <NavItem to="/">
           <FiLogOut style={{ marginRight: "8px" }} />
