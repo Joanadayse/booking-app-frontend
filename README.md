@@ -3,18 +3,31 @@
 
 Interface web para o sistema de reservas, permitindo a gestão de espaços e visualização de estatísticas.
 ---
-🔗 **Deploy da aplicação:** [Booking App - Online](https://aplicacaodereservas.netlify.app/)  
+🔗 **Acesse o app em produção:** : (https://booking-app-frontend.netlify.app)
 
-## 🚀 Tecnologias
+## 🧩 Funcionalidades
 
-- **React.js** – Interface dinâmica  
-- **Vite** – Ambiente de desenvolvimento rápido  
-- **TypeScript** – Tipagem segura  
-- **Axios** – Comunicação com API  
-- **React Router DOM** – Gerenciamento de rotas  
+- 🔐 Autenticação de usuários
+- 📆 Reserva de espaços por data e turno
+- 📊 Visualização de gráficos com estatísticas de uso por local, turno e sala
+- 🕹️ Filtro de local (Caldeira ou EQTLAB)
+- 🗂️ Histórico de reservas realizadas
+- 🖼️ UI intuitiva e responsiva
 
 ---
 
+## 🚀 Tecnologias
+
+- [React.js](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Axios](https://axios-http.com/)
+- [React Router DOM](https://reactrouter.com/)
+- [Chart.js](https://www.chartjs.org/) + `react-chartjs-2`
+
+---
+
+📥 Backend da Aplicação :(https://github.com/Joanadayse/booking-app-backend)
 
 
 
