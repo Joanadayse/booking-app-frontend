@@ -82,6 +82,7 @@ const haConflitoDeTurno = (turnoNovo: string, turnoExistente: string): boolean =
 
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
+     setCarregando(true); 
 console.log("Tentando enviar reserva com dados:");
 console.log("Data:", form.date);
 console.log("Turno:", form.turno);
@@ -135,6 +136,7 @@ if (haConflito) {
     });
   } catch (error) {
     setMensagem("Erro ao criar a reserva.");
+    setCarregando(false);
   }
 };
 
