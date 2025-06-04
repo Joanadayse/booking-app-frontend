@@ -3,7 +3,7 @@
 
 Interface web para o sistema de reservas, permitindo a gestão de espaços e visualização de estatísticas.
 ---
-🔗 **Acesse o app em produção:** : (https://booking-app-frontend.netlify.app)
+🔗 **Acesse o app em produção:** : (https://aplicacaodereservas.netlify.app/)
 
 ## 🧩 Funcionalidades
 
