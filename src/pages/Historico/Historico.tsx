@@ -13,10 +13,15 @@ const [location, setLocation] = useState("Caldeira");
 
 
   useEffect(() => {
-  const fetchStats = async () => {
-    const response = await api.get(`/bookings/stats/location/${location}`);
+const fetchStats = async () => {
+  try {
+    const response = await api.get(`/bookings/stats?location=${location}`);
+    console.log("📊 Dados recebidos no frontend:", response.data);
     setStats(response.data);
-  };
+  } catch (error) {
+    console.error("❌ Erro ao buscar dados:", error);
+  }
+};
 
   fetchStats();
 }, [location]); // 🔹 A cada mudança de `location`, a API é consultada novamente
