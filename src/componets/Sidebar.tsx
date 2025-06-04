@@ -137,14 +137,6 @@ const response = await fetch("http://localhost:3001/api/auth/user", {
 
 
 
-
-const handleLogout = () => {
-  localStorage.removeItem("token");
-  navigate("/");
-};
-
-
-
   return (
     <SidebarContainer>
       <div>
