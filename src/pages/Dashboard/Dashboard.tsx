@@ -45,15 +45,15 @@ export const Dashboard = () => {
 
 
 useEffect(() => {
-  const fetchStats = async () => {
-    try {
-      const response = await api.get(`/bookings/stats/location/${location}`);
-      console.log("📊 Dados recebidos:", response.data); // 🔹 Verificar os dados da API
-      setStats(response.data);
-    } catch (error) {
-      console.error("❌ Erro ao buscar dados:", error);
-    }
-  };
+ const fetchStats = async () => {
+  try {
+    const response = await api.get(`/bookings/stats?location=${location}`);
+    console.log("📊 Dados recebidos no frontend:", response.data); // 🔹 Depuração
+    setStats(response.data);
+  } catch (error) {
+    console.error("❌ Erro ao buscar dados:", error);
+  }
+};
 
   fetchStats();
 }, [location]);
