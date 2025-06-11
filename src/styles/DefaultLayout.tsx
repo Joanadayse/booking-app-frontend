@@ -7,7 +7,6 @@ const Wrapper = styled.div`
   display: flex;
   height: 100vh;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.background};
 `;
 
 const Content = styled.main`

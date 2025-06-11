@@ -1,4 +1,4 @@
-// src/styles/theme.ts
+
 
 const colors = {
   // Primary - Extendida

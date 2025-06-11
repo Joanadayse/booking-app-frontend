@@ -29,7 +29,7 @@ ChartJS.register(
   ArcElement
 );
 
-export const Dashboard = () => {
+export function Dashboard  ()  {
   const [location, setLocation] = useState("Caldeira");
   const [stats, setStats] = useState<Stats | null>(null);
 
@@ -115,3 +115,5 @@ const lineData = stats?.totalReservasPorMes && stats.totalReservasPorMes.length 
     </DefaultLayout>
   );
 };
+
+export default Dashboard;
