@@ -6,7 +6,7 @@ import { FaTrash } from "react-icons/fa";
 import { api } from "../../services/api";
 import type { Booking } from "../../models/booking";
 
-export const ReservasPorLocal = () => {
+const ReservasPorLocal = () => {
   const { locationId } = useParams<{ locationId: string }>();
   const [reservas, setReservas] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
@@ -97,3 +97,5 @@ export const ReservasPorLocal = () => {
     </DefaultLayout>
   );
 };
+
+export default ReservasPorLocal;

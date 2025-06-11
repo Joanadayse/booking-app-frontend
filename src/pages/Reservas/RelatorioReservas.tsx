@@ -5,7 +5,7 @@ import { DefaultLayout } from "../../styles/DefaultLayout";
 import type { Booking } from "../../models/booking";
 import { getBookings } from "../../services/api";
 
-export const RelatorioReservas = () => {
+const RelatorioReservas = () => {
   const [reservas, setReservas] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -144,3 +144,5 @@ export const RelatorioReservas = () => {
     </DefaultLayout>
   );
 };
+
+export default RelatorioReservas;

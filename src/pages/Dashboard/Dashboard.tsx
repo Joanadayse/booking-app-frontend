@@ -65,21 +65,10 @@ export const Dashboard = () => {
   }]
 } : { labels: ["Nenhum dado"], datasets: [{ label: "Sem dados", data: [1], backgroundColor: ["#CCCCCC"] }] };
 
-  // 🔹 Configuração do gráfico de Pizza (Reservas por Turno)
-  const turnosAgrupados = stats?.totalReservasPorTurno?.reduce((acc, t) => {
-    const turnoNormalizado = normalizeTurno(t.turno);
-    acc[turnoNormalizado] = (acc[turnoNormalizado] || 0) + Number(t.total);
-    return acc;
-  }, {} as Record<string, number>);
-  
-const pieData = turnosAgrupados && Object.keys(turnosAgrupados).length ? {
-  labels: Object.keys(turnosAgrupados),
-  datasets: [{
-    label: "Reservas por Turno",
-    data: Object.values(turnosAgrupados),
-    backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"]
-  }]
-} : { labels: ["Nenhum dado"], datasets: [{ label: "Sem dados", data: [1],  backgroundColor: ["#CCCCCC"] }] };
+const pieData = stats ? {
+  labels: stats.totalReservasPorTurno.map(t => t.turno),
+  datasets: [{ label: "Reservas por Turno", data: stats.totalReservasPorTurno.map(t => t.total), backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"] }]
+} : { labels: [], datasets: [] };
 
   // 🔹 Configuração do gráfico de Linhas (Reservas por Mês)
 const lineData = stats?.totalReservasPorMes && stats.totalReservasPorMes.length > 0 ? {

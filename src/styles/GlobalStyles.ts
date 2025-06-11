@@ -1,71 +1,35 @@
-import { createGlobalStyle } from "styled-components";
+// src/styles/global.ts
+
+import { createGlobalStyle } from 'styled-components';
+// import theme from './theme'; // Não precisa mais importar o tema aqui se não tiver background
 
 export const GlobalStyle = createGlobalStyle`
-  * {
+  html, body, #root {
     margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100%;
     box-sizing: border-box;
+    background-color: transparent; /* Garante que não haja fundo padrão */
+    /* REMOVA qualquer background gradiente ou cor aqui */
+  }
+
+  *, *::before, *::after {
+    box-sizing: inherit;
   }
 
   body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: ${({ theme }) => theme.colors.background};
-    color: ${({ theme }) => theme.colors.text};
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* REMOVA qualquer background-color aqui */
+    color: ${props => props.theme.colors.neutral['700']}; /* Mantenha a cor do texto padrão */
   }
 
   a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
   }
-
-  table {
-  width: 100%;
-  border-collapse: collapse; /* Remove espaços internos entre as bordas */
-  margin-bottom: 2rem; /* Adiciona espaço entre tabelas */
-}
-
-th, td {
-  border: 1px solid #ddd; /* Adiciona borda fina */
-  padding: 12px; /* Aumenta espaçamento interno */
-  text-align: left; /* Alinha o texto para esquerda */
-}
-
-th {
-  background-color: #f4f4f4; /* Dá um destaque ao cabeçalho */
-  font-weight: bold;
-}
-
-input,
-  select {
-    padding: 0.5rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-    outline: none;
-  }
-
-  button {
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-  }
-
-  button:hover {
-    background-color: #0056b3;
-  }
-
-  label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #333;
-}
-
-
-
 `;

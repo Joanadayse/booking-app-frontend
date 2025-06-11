@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 
-export const AmbientesDisponiveis = () => {
+const AmbientesDisponiveis = () => {
   const [data, setData] = useState("");
   const [location, setLocation] = useState("Caldeira"); // Agora com nome, não ID
   const [turno, setTurno] = useState("manhã");
@@ -73,3 +73,5 @@ export const AmbientesDisponiveis = () => {
     </div>
   );
 };
+
+export default AmbientesDisponiveis;

@@ -6,7 +6,7 @@ import { api, getBookings } from "../../services/api";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 
-export const ListaReservas = () => {
+ const ListaReservas = () => {
     const navigate = useNavigate();
   const [reservas, setBookings] = useState<Booking[]>([]);
   const [reservaSelecionada, setReservaSelecionada] = useState<Booking | null>(null);
@@ -141,3 +141,6 @@ export const ListaReservas = () => {
     </DefaultLayout>
   );
 };
+
+
+export default ListaReservas;

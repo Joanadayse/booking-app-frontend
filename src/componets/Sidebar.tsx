@@ -141,6 +141,14 @@ export const Sidebar = () => {
 
 
 
+
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  navigate("/");
+};
+
+
+
   return (
     <SidebarContainer>
       <div>
@@ -176,17 +184,15 @@ export const Sidebar = () => {
         <Divider />
 
         {/* USUÁRIO LOGADO */}
-        {userData ? (
-  <UserContainer>
-    <Avatar>{getInitials(userData.name)}</Avatar>
-    <UserInfo>
-      <span>{userData.name}</span>
-      <small>{userData.email}</small>
-    </UserInfo>
-  </UserContainer>
-) : (
-  <p>🔹 Usuário não autenticado</p>
-)}
+        {userData && (
+          <UserContainer>
+            <Avatar>{getInitials(userData.name)}</Avatar>
+            <UserInfo>
+              <span>{userData.name}</span>
+              <small>{userData.email}</small>
+            </UserInfo>
+          </UserContainer>
+        )}
 
         <NavItem to="/">
           <FiLogOut style={{ marginRight: "8px" }} />
