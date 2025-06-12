@@ -104,28 +104,7 @@ export const Label = styled.label`
   font-weight: 600;
 `;
 
-// export const Input = styled.input`
-//   width: 100%;
-//   padding: 16px 16px;
-//   border-radius: 8px;
-//   border: 1px solid #CAD5E2;
-//   font-size: 14px;
 
-//     &::placeholder {
-//     color: #738196; /* Cor do placeholder */
-//     opacity: 1; /* Garante que não fique esmaecido demais */
-//   }
-
-
-//     &:hover {
-//     transform: scale(1.02);
-//     border-color:${({ theme }) => theme.colors.neutral['400']}
-//   }
-
-//   &:focus {
-//     border-color:${({ theme }) => theme.colors.cards.purple['default']};
-//   }
-// `;
 
 export const Input = styled.input`
   width: 100%;
@@ -133,7 +112,8 @@ export const Input = styled.input`
   border-radius: 8px;
   border: 1px solid #CAD5E2;
   font-size: 14px;
-  transition: border-color 0.3s ease, transform 0.2s ease;
+  transition: border-color 0.15s ease;
+
 
   &::placeholder {
     color: #738196;
@@ -151,6 +131,12 @@ export const Input = styled.input`
     box-shadow: 0 0 0 4px rgba(255, 232, 251, 0.6); /* blur suave */
     outline: none;
   }
+
+  &::selection {
+    background: transparent;
+    color: inherit;
+  }
+
 `;
 
 

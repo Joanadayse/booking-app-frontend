@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import styled from "styled-components";
-import { Sidebar } from "../componets/Sidebar";
+import { Sidebar } from "../componets/Sidebar/Sidebar";
 
 
 const Wrapper = styled.div`
