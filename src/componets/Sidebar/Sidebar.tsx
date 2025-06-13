@@ -1,25 +1,42 @@
 import { FiArchive, FiBarChart2, FiBriefcase, FiClock, FiLogOut, FiMapPin } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getInitials } from "../../utils/getInitials";
-import { useEffect, useState } from "react";
-import { Footer, Logo, logo, LogoWrapper, Nav, NavItem, SidebarContainer } from "./Sidebar.styles";
-import reservasIcon from "../../assets/icons/Icon-calendar.png"
-import ambientesIcon from "../../assets/icons/Icon-list.png";
-import historicoIcon from "../../assets/icons/Icon-history.png";
-import listIcon from "../../assets/icons/Icon-list.png";
+import React, { useEffect, useState } from "react";
+import { Footer, Icon, LocationLabel, LocationSelect, LocationSelectorWrapper, Logo, logo, LogoWrapper, MenuTitle, Nav, NavItem, SidebarContainer } from "./Sidebar.styles";
+import reservasIcon from "../../assets/icons/Icon-calendar.svg"
+import ambientesIcon from "../../assets/icons/Icon-list.svg";
+import historicoIcon from "../../assets/icons/Icon-history.svg";
+import listIcon from "../../assets/icons/Icon-graphic.svg";
+import Select from "react-select";
+import type { SingleValue } from "react-select";
+import { StyledSelect } from "./LocationSelect.styles.tsx";
+
+type OptionType = {
+  value: string;
+  label: string;
+};
+
+const options: OptionType[] = [
+  { value: "sao-luis", label: "São Luís" },
+  { value: "porto-alegre", label: "Porto Alegre" },
+];
 
 
 
 
 
-
+// Dentro do componente Sidebar
 export const Sidebar = () => {
   const location = useLocation();
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
- const [userData, setUserData] = useState<{ name: string; email: string } | null>(null);
+  const [userData, setUserData] = useState<{ name: string; email: string } | null>(null);
+  const [selectedOption, setSelectedOption] = useState<OptionType | null>(options[0]);
 
- useEffect(() => {
+
+
+
+  useEffect(() => {
     const fetchUser = async () => {
       try {
         const token = sessionStorage.getItem("token");
@@ -30,29 +47,23 @@ export const Sidebar = () => {
           return;
         }
 
-        console.log("🔹 Token recuperado do sessionStorage:", token);
-
         const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/user`, {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
 
         if (response.ok) {
           const data = await response.json();
-          console.log("👤 User data recebido:", data);
-
           if (data?.name && data?.email) {
             setUserData({
               name: data.name,
-              email: data.email
+              email: data.email,
             });
           } else {
-            console.warn("⚠️ Usuário não encontrado na resposta.");
             setUserData(null);
           }
         } else {
-          console.error("🚫 Não autorizado ao buscar usuário.");
           setUserData(null);
         }
       } catch (error) {
@@ -64,49 +75,59 @@ export const Sidebar = () => {
     fetchUser();
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
 
 
-const handleLogout = () => {
-  localStorage.removeItem("token");
-  navigate("/");
-};
+
 
 
 
   return (
-   <SidebarContainer>
+    <SidebarContainer>
       <LogoWrapper>
         <Logo src={logo} alt="Logo" />
-        
       </LogoWrapper>
 
+    <LocationSelectorWrapper>
+      <MenuTitle>Local</MenuTitle>
+      
+      <StyledSelect
+  classNamePrefix="react-select"
+  options={options}
+  value={selectedOption}
+  onChange={(option) => setSelectedOption(option)}
+  isSearchable={false}
+   components={{ IndicatorSeparator: () => null }}
+/>
+    </LocationSelectorWrapper>
+
       <Nav>
-        <NavItem  to="/reservas" active={location.pathname === "/reservas"}>
-         <img src={reservasIcon} alt="icon-reservas"/>
+        <MenuTitle>Menu</MenuTitle>
+        <NavItem to="/reservas" active={location.pathname === "/reservas"}>
+          <Icon src={reservasIcon} alt="icon-reservas" />
           Reservas
         </NavItem>
         <NavItem to="/ambientes" active={location.pathname === "/ambientes"}>
-          <img src={ambientesIcon} alt="icon-ambientes"/>
+          <Icon src={ambientesIcon} alt="icon-ambientes" />
           Ambientes
         </NavItem>
         <NavItem to="/historico" active={location.pathname === "/historico"}>
-          <img src={historicoIcon} alt="icon-history"/>
-          
+          <Icon src={historicoIcon} alt="icon-history" />
           Histórico
         </NavItem>
-        <NavItem  to="/dashboard" active={location.pathname === "/dashboard"}>
-          <img src={listIcon} alt="icon-list"/>
-          
+        <NavItem to="/dashboard" active={location.pathname === "/dashboard"}>
+          <Icon src={listIcon} alt="icon-list" />
           Estatísticas
         </NavItem>
       </Nav>
 
       <Footer>
-        Local: <span>São Luís</span>
+        Local: <span>{selectedOption?.label}</span>
       </Footer>
     </SidebarContainer>
   );
 };
-
-

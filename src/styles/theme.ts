@@ -1,67 +1,54 @@
-
-
 const colors = {
-  // Primary - Extendida
   primary: {
     default: '#C20FB5',
-    dark: '#912172',
-    mediumLight: '#E255D8',
+    dark: '#762077',
+    mediumLight: '#AE24C3',
     light: '#FFE8FB',
   },
-
-  // Secondary - Extendida
   secondary: {
-    default: '#4F23FF',
-    dark: '#34126C',
-    light: '#EDF0FF',
+    default: '#5AF2FF',
+    dark: '#5AF2FF',
+    light: '#5AF2FF',
   },
-
-  // Neutral Colors
   neutral: {
-    '700': '#07172B',
+    '700': '#000000',
     '600': '#314156',
     '500': '#45556C',
     '400': '#738196',
-    '300': '#A4ABB3',
-    '200': '#C2C8D0',
-    '100': '#F4F4FF',
-    '50': '#F8FAFC',
+    '300': '#A0AABB',
+    '200': '#E2E8F0',
+    '100': '#FAFBFF',
+    '50': '#F0F3F7',
     white: '#FFFFFF',
   },
-
-  // Auxiliary Palette
   feedback: {
-    negative: '#F97474',
-    warning: '#F8C674',
-    informational: '#74A9F8',
-    successful: '#4BE28F',
+    negative: '#F27474',
+    warning: '#F8BC74',
+    informational: '#74B9F2',
+    successful: '#41B24B',
   },
-
-  // Cards Colors
   cards: {
     purple: {
-      default: '#C20FB5',
-      medium: '#DCCCF5',
-      light: '#F2E7FF',
-      houver: '#F572EB',
+      default: '#9B51E0',
+      medium: '#C0CCF4',
+      light: '#E7F2FF',
     },
     yellow: {
-      default: '#F4B000',
-      medium: '#F3E682',
-      light: '#FBF0C4',
+      default: '#FFC107',
+      medium: '#FFE59B',
+      light: '#FFF9D9',
     },
     blue: {
-      default: '#3276FF',
-      medium: '#D2E0FF',
-      light: '#E8F1FF',
+      default: '#327EFF',
+      medium: '#D3E6FF',
+      light: '#B0D8FF',
     },
   },
 };
 
 const spacing = {
-  sm: '16px',
-  md: '24px',
-  lg: '32px',
+  md: '16px',
+  lg: '24px',
 };
 
 const theme = {
