@@ -1,0 +1,37 @@
+[33m1bd325e[m[33m ([m[1;36mHEAD[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: pull origin main --rebase (start): checkout 1bd325e17daf49f80750b63c92bcfc976080df36
+[33m6caedeb[m[33m ([m[1;32mmain[m[33m)[m HEAD@{1}: commit: Ajuste dos ícones e select de acordo com o Figma
+[33me7a4796[m HEAD@{2}: commit: ajuste adição dos icones no navbar
+[33m84e6e2f[m HEAD@{3}: rebase (finish): returning to refs/heads/main
+[33m84e6e2f[m HEAD@{4}: rebase (continue): Corrige erro de build: export default e theme.background
+[33m7541c85[m HEAD@{5}: pull --rebase origin main (start): checkout 7541c850785b347d8d4750a92f3de3f7441a8f6c
+[33mcb8f501[m HEAD@{6}: commit: Corrige erro de build: export default e theme.background
+[33m0f4da71[m HEAD@{7}: rebase (finish): returning to refs/heads/main
+[33m0f4da71[m HEAD@{8}: rebase (continue): Ajuste da pagina de Login de acordo com o figma recebido
+[33m1184bcf[m HEAD@{9}: pull origin main --rebase (start): checkout 1184bcf58dfe52fe9b7b5e1b385e02e7865177d0
+[33m73939e4[m HEAD@{10}: commit: Ajuste da pagina de Login de acordo com o figma recebido
+[33m81b747a[m HEAD@{11}: commit: Pagina de login com jwt
+[33mbd475c4[m HEAD@{12}: commit: pagina reservas disponiveis
+[33mcbbed85[m HEAD@{13}: commit: ajuste visuais e de exportações
+[33m642cb93[m HEAD@{14}: commit: melhorias visuais
+[33mad3be2e[m HEAD@{15}: commit: estilização da pagina reserva por local
+[33m8237bdc[m HEAD@{16}: commit: pagina de adicionar ambiente (sala)
+[33ma7e4a47[m HEAD@{17}: commit: melhorias no css da pagina de ambientes
+[33me686820[m HEAD@{18}: commit: pagina de dashboard
+[33me3ceb71[m HEAD@{19}: commit: pagina de historico por localização
+[33mbdef371[m HEAD@{20}: commit: Página de historico
+[33m955f891[m HEAD@{21}: commit: filtros de reservas
+[33m78c82e9[m HEAD@{22}: commit: modal visualizar reserva
+[33m6f62793[m HEAD@{23}: commit: excluir reserva
+[33m876a52c[m HEAD@{24}: commit: editar reservas
+[33mec53bd6[m HEAD@{25}: commit: pagina de adição de reservas
+[33me639506[m HEAD@{26}: commit: renderização de ambientes
+[33m6549010[m HEAD@{27}: commit: ajuste no sidebar
+[33m52ef393[m HEAD@{28}: commit: apagar reservas
+[33m58f8bfa[m HEAD@{29}: commit: busca de reservas por local
+[33m940b56a[m HEAD@{30}: commit: pagina de reservas
+[33m4656688[m HEAD@{31}: pull --rebase origin main: Fast-forward
+[33mbfa1a98[m HEAD@{32}: checkout: moving from navbar to main
+[33mad1aa7a[m[33m ([m[1;31morigin/navbar[m[33m, [m[1;32mnavbar[m[33m)[m HEAD@{33}: commit: criação das demais paginas
+[33m7f2cb3d[m HEAD@{34}: commit: Criação do sidebar,funcionalidades de rotas , estilização
+[33mbfa1a98[m HEAD@{35}: checkout: moving from main to navbar
+[33mbfa1a98[m HEAD@{36}: commit (initial): iniciando apliacação

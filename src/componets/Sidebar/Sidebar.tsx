@@ -2,7 +2,7 @@ import { FiArchive, FiBarChart2, FiBriefcase, FiClock, FiLogOut, FiMapPin } from
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getInitials } from "../../utils/getInitials";
 import React, { useEffect, useState } from "react";
-import { Footer, Icon, LocationLabel, LocationSelect, LocationSelectorWrapper, Logo, logo, LogoWrapper, MenuTitle, Nav, NavItem, SidebarContainer } from "./Sidebar.styles";
+import { Footer, Icon, LocationLabel,  LocationSelectorWrapper, Logo, logo, LogoWrapper, MenuTitle, Nav, NavItem, SidebarContainer } from "./Sidebar.styles";
 import reservasIcon from "../../assets/icons/Icon-calendar.svg"
 import ambientesIcon from "../../assets/icons/Icon-list.svg";
 import historicoIcon from "../../assets/icons/Icon-history.svg";
@@ -125,9 +125,7 @@ export const Sidebar = () => {
         </NavItem>
       </Nav>
 
-      <Footer>
-        Local: <span>{selectedOption?.label}</span>
-      </Footer>
+
     </SidebarContainer>
   );
 };

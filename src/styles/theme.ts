@@ -1,8 +1,8 @@
 const colors = {
   primary: {
     default: '#C20FB5',
-    dark: '#762077',
-    mediumLight: '#AE24C3',
+    dark: '#7b1272',
+    mediumLight: '#E259DB',
     light: '#FFE8FB',
   },
   secondary: {
@@ -15,7 +15,7 @@ const colors = {
     '600': '#314156',
     '500': '#45556C',
     '400': '#738196',
-    '300': '#A0AABB',
+    '300': '#AB4B53',
     '200': '#E2E8F0',
     '100': '#FAFBFF',
     '50': '#F0F3F7',

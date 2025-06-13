@@ -144,7 +144,7 @@ export const Button = styled.button`
   margin-top: 24px;
   width: 100%;
   padding: 14px;
-  background-color:${({ theme }) => theme.colors.cards.purple['default']};
+  background-color:${({ theme }) => theme.colors.primary['default']};
   color: white;
   font-weight: bold;
   border: none;
@@ -154,7 +154,7 @@ export const Button = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color:${({ theme }) => theme.colors.cards.purple['houver']};
+    background-color:${({ theme }) => theme.colors.primary['mediumLight']};
     }
 `;
 
