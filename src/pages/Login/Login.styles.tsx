@@ -154,7 +154,7 @@ export const Button = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color:${({ theme }) => theme.colors.primary['mediumLight']};
+   background-color: ${({ theme }) => theme.colors.primary.light};
     }
 `;
 
