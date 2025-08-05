@@ -3,7 +3,7 @@ import type { LoginData, User } from "../models/auth";
 import type {  Booking} from "../models/booking";
 import type { CreateSpaceData, Space } from "../models/space";
 
-
+console.log("API URL:", import.meta.env.VITE_API_URL);
 
 export const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
